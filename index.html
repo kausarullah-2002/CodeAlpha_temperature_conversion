@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Temperature</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+        }
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.converter {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+select {
+    padding: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+    </style>
+</head>
+<body>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="converter">
+        <h1>Temperature Converter</h1>
+        <label for="temperature">Enter Temperature:</label>
+        <input type="number" id="temperature" placeholder="Enter temperature" required>
+        <select id="unitFrom">
+            <option value="celsius">Celsius (°C)</option>
+            <option value="fahrenheit">Fahrenheit (°F)</option>
+            <option value="kelvin">Kelvin (K)</option>
+        </select>
+        <span>to</span>
+        <select id="unitTo">
+            <option value="celsius">Celsius (°C)</option>
+            <option value="fahrenheit">Fahrenheit (°F)</option>
+            <option value="kelvin">Kelvin (K)</option>
+        </select>
+        <button id="convert">Convert</button>
+        <p id="result">Result will be displayed here</p>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const convertButton = document.getElementById("convert");
+    const temperatureInput = document.getElementById("temperature");
+    const unitFromSelect = document.getElementById("unitFrom");
+    const unitToSelect = document.getElementById("unitTo");
+    const resultDisplay = document.getElementById("result");
+
+    convertButton.addEventListener("click", function () {
+        const temperature = parseFloat(temperatureInput.value);
+        const unitFrom = unitFromSelect.value;
+        const unitTo = unitToSelect.value;
+
+        let result;
+
+        if (unitFrom === "celsius") {
+            if (unitTo === "fahrenheit") {
+                result = (temperature * 9/5) + 32;
+            } else if (unitTo === "kelvin") {
+                result = temperature + 273.15;
+            } else {
+                result = temperature;
+            }
+        } else if (unitFrom === "fahrenheit") {
+            if (unitTo === "celsius") {
+                result = (temperature - 32) * 5/9;
+            } else if (unitTo === "kelvin") {
+                result = (temperature - 32) * 5/9 + 273.15;
+            } else {
+                result = temperature;
+            }
+        } else if (unitFrom === "kelvin") {
+            if (unitTo === "celsius") {
+                result = temperature - 273.15;
+            } else if (unitTo === "fahrenheit") {
+                result = (temperature - 273.15) * 9/5 + 32;
+            } else {
+                result = temperature;
+            }
+        }
+
+        resultDisplay.textContent = `${temperature} ${unitFrom} is ${result.toFixed(2)} ${unitTo}`;
+    });
+});
+
+    </script>
+</body>
+</html>
